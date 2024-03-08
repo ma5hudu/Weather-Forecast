@@ -4,41 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forecast</title>
+    <link href="src/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <header>
-      <form>
-        <input type="search" placeholder="🔍search for a city..." required />
-        <input type="submit" value="Search" />
-      </form>
-    </header>
+    <div class="forecast">
+      <header>
+        <form>
+          <input
+            class="serach-value"
+            type="search"
+            placeholder="🔍search for a city..."
+            required
+          />
+          <input class="search-button" type="submit" value="Search" />
+        </form>
+      </header>
 
-    <main>
-      <div>
-        <h1>Johannesburg</h1>
+      <main>
+        <div class="Weather-details">
+          <h1>Johannesburg</h1>
+          <p>
+            Thursday 22:52, Moderate rain <br />
+            Humidity: 89%, Wind: 1.03km/h
+          </p>
+        </div>
+        <div class="current-weather">🌦️16℃</div>
+      </main>
+
+      <footer>
         <p>
-          Thursday 22:52, Moderate rain <br />
-          Humidity: 89%, Wind: 1.03km/h
+          Coded by
+          <a href="https://github.com/ma5hudu" target="_blank"
+            >Mashudu Mphaphuli</a
+          >, it's on
+          <a href="https://github.com/ma5hudu/Weather-Forecast" target="_blank"
+            >GitHub</a
+          >
+          and hosted on
+          <a href="fabulous-gingersnap-0cfd46.netlify.app" target="_blank"
+            >Neflify</a
+          >
         </p>
-      </div>
-      <div>🌦️16℃</div>
-    </main>
-
-    <footer>
-      <p>
-        Coded by
-        <a href="https://github.com/ma5hudu" target="_blank"
-          >Mashudu Mphaphuli</a
-        >, it's on
-        <a href="https://github.com/ma5hudu/Weather-Forecast" target="_blank"
-          >GitHub</a
-        >
-        and hosted on
-        <a href="fabulous-gingersnap-0cfd46.netlify.app" target="_blank"
-          >Neflify</a
-        >
-      </p>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
