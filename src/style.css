@@ -1,3 +1,6 @@
+body {
+  background: #4653DF;
+}
 .forecast {
   font-family: "PT Serif", serif;
   background: white;
@@ -9,20 +12,72 @@
 }
 
 .serach-value {
+  color: #000000;
   width: 75%;
-  padding: 10px;
+  padding: 20px;
   margin: 5px;
   background-color: aliceblue;
-  border: 1px solid #885df1;
+  border: none;
   border-radius: 10px;
 }
+
 
 .search-button {
   color: #ffffff;
-  padding: 10px;
-  background-color: #885df1;
-  border: 1px solid #885df1;
+  padding: 20px;
+  background-color: #4653DF;
+  border: 1px solid #4653DF;
   border-radius: 10px;
 }
+header {
+  border-bottom: 1px solid #f9f7fe;
+  padding-bottom: 30px;
+}
 
+.current-weather{
+ font-size: 40px;
+}
+
+.current-value{
+  font-size: 80px;
+  font-weight: bold;
+
+}
+
+.current-icon{
+  position: relative;
+  top: -8px;
+  font-size: 40px;
+  margin-right: 10px;
+
+}
+
+.current-unit{
+  font-size: 28px;
+  position: relative;
+  top: -38px;
+}
+
+.weather-details{
+  display: flex;
+  justify-content: space-between;
+}
+
+main{
+  
+  border-bottom: 1px solid #f9f7fe;
+  padding-bottom: 30px;
+
+}
+
+footer{
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: smaller;
+}
+
+.weather-details p u{
+  font-weight: bold;
+}
 
