@@ -63,9 +63,17 @@ function weatherDetails(response) {
   description.innerHTML =
     currentDescription.charAt(0).toUpperCase() + currentDescription.slice(1);
 
-  console.log(currentDescription);
-  let temparatureInformation;
-  let humidity;
-  let wind;
+  //get humidity
+  let humidity = document.querySelector("#humidity");
+  let currentHumidy = response.data.temperature.humidity;
+  humidity.innerHTML = `Humidity: <u>${currentHumidy}%</u>`;
+
+  //get wind speed
+  let wind = document.querySelector("#wind");
+  let windSpeed = response.data.wind.speed;
+  wind.innerHTML = `Wind: <u>${windSpeed}km/h</u>`;
+
+  console.log(windSpeed);
+
   let icon;
 }
