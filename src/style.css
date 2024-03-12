@@ -27,6 +27,7 @@ body {
   background-color: #4653df;
   border: 1px solid #4653df;
   border-radius: 10px;
+  cursor: pointer;
 }
 header {
   border-bottom: 1px solid #f9f7fe;
@@ -80,4 +81,7 @@ footer {
   font-weight: bold;
 }
 
-
+.pictures {
+  display: flex;
+  justify-content: left;
+}
