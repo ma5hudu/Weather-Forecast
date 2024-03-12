@@ -31,14 +31,34 @@ function dateTime() {
 let todaysDate = document.querySelector(".current-date");
 todaysDate.innerHTML = dateTime();
 
-
 //update the name of the city with the searched city value.
 function findCity(event) {
   event.preventDefault();
   let cityValue = document.querySelector(".serach-value");
   let city = document.querySelector(".current-city");
-  city.innerHTML = `${cityValue.value}`;
+  let currentCity = cityValue.value;
+  city.innerHTML = currentCity;
+
+  //API key and Url with city information
+  let apiKey = "ad47941082ao90b750fat7b2f455c3f0";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=metric`;
+
+  //read the api details for the specific city that was searched.
+  axios.get(apiUrl).then(weatherDetails);
 }
 
 let searchCity = document.querySelector(".search-button");
 searchCity.addEventListener("click", findCity);
+
+//get the current city weather information from the api.
+function weatherDetails(response) {
+  let temparature = document.querySelector(".current-value");
+  let currentTemparature = Math.round(response.data.temperature.current);
+  temparature.innerHTML = currentTemparature;
+
+  console.log(currentTemparature);
+  let temparatureInformation;
+  let humidity;
+  let wind;
+  let icon;
+}
