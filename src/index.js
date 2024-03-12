@@ -52,11 +52,18 @@ searchCity.addEventListener("click", findCity);
 
 //get the current city weather information from the api.
 function weatherDetails(response) {
+  //get current temparature value
   let temparature = document.querySelector(".current-value");
   let currentTemparature = Math.round(response.data.temperature.current);
   temparature.innerHTML = currentTemparature;
 
-  console.log(currentTemparature);
+  //get dercription of the current temparature
+  let description = document.querySelector(".description");
+  let currentDescription = response.data.condition.description;
+  description.innerHTML =
+    currentDescription.charAt(0).toUpperCase() + currentDescription.slice(1);
+
+  console.log(currentDescription);
   let temparatureInformation;
   let humidity;
   let wind;

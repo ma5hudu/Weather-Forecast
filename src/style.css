@@ -1,5 +1,5 @@
 body {
-  background: #4653DF;
+  background: #4653df;
 }
 .forecast {
   font-family: "PT Serif", serif;
@@ -21,12 +21,11 @@ body {
   border-radius: 10px;
 }
 
-
 .search-button {
   color: #ffffff;
   padding: 20px;
-  background-color: #4653DF;
-  border: 1px solid #4653DF;
+  background-color: #4653df;
+  border: 1px solid #4653df;
   border-radius: 10px;
 }
 header {
@@ -34,50 +33,49 @@ header {
   padding-bottom: 30px;
 }
 
-.current-weather{
- font-size: 40px;
+.current-weather {
+  font-size: 40px;
 }
 
-.current-value{
+.current-value {
   font-size: 80px;
   font-weight: bold;
-
 }
 
-.current-icon{
+.current-icon {
   position: relative;
   top: -8px;
   font-size: 40px;
   margin-right: 10px;
-
 }
 
-.current-unit{
+.current-unit {
   font-size: 28px;
   position: relative;
   top: -38px;
 }
 
-.weather-details{
+.weather-details {
   display: flex;
   justify-content: space-between;
 }
 
-main{
-  
+main {
   border-bottom: 1px solid #f9f7fe;
   padding-bottom: 30px;
-
 }
 
-footer{
+footer {
   margin-top: 10px;
   padding: 10px;
   text-align: center;
   font-size: smaller;
 }
 
-.weather-details p u{
+.weather-details p u {
   font-weight: bold;
 }
 
+.current-date {
+  font-weight: bold;
+}
