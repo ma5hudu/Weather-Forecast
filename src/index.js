@@ -73,7 +73,11 @@ function weatherDetails(response) {
   let windSpeed = response.data.wind.speed;
   wind.innerHTML = `Wind: <u>${windSpeed}km/h</u>`;
 
-  console.log(windSpeed);
+  //get Temparature icon
+  let icon = document.querySelector(".current-icon");
+  let temparatureIcon = response.data.condition.icon_url;
+  let iconDescription = response.data.condition.icon;
+  icon.innerHTML = `<img src="${temparatureIcon}" alt="${iconDescription}">`;
 
-  let icon;
+  console.log(iconDescription);
 }
