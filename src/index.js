@@ -31,7 +31,6 @@ function dateTime() {
 let todaysDate = document.querySelector(".current-date");
 todaysDate.innerHTML = dateTime();
 
-
 //update the name of the city with the searched city value.
 function findCity(event) {
   event.preventDefault();
@@ -48,10 +47,8 @@ function findCity(event) {
   axios.get(apiUrl).then(weatherDetails);
 }
 
-
 let searchCity = document.querySelector(".search-button");
 searchCity.addEventListener("click", findCity);
-
 
 //get the current city weather information from the api.
 function weatherDetails(response) {
@@ -60,8 +57,6 @@ function weatherDetails(response) {
   let currentTemparature = Math.round(response.data.temperature.current);
   temparature.innerHTML = currentTemparature;
 
-
-  
   //get dercription of the current temparature
   let description = document.querySelector(".description");
   let currentDescription = response.data.condition.description;
@@ -86,3 +81,29 @@ function weatherDetails(response) {
 
   console.log(iconDescription);
 }
+
+//display weekkly weather forecast.
+function weeklyForecast() {
+  let days = ["Fri", "Sat", "Sun", "Thu", "Fri"];
+  let daysOfWeek = " ";
+
+  //loop through the days of the week
+  days.forEach(function (day) {
+    daysOfWeek =
+      daysOfWeek +
+      `
+  <div class="forecast-day">
+            <div class="forecast-date">${day}</div>
+            <div class="forecast-icon">🌤️</div>
+            <div class="forecast-temparature">
+              <div class="forecast-temparature-max"><strong>15°</strong></div>
+              <div class="forecast-temparature-min"><strong>9°</strong></div>
+            </div>
+  `;
+  });
+
+  let forecastWeather = document.querySelector("#forecast");
+  forecastWeather.innerHTML = daysOfWeek;
+}
+
+weeklyForecast();
