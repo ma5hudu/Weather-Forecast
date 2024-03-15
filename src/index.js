@@ -31,6 +31,7 @@ function dateTime() {
 let todaysDate = document.querySelector(".current-date");
 todaysDate.innerHTML = dateTime();
 
+
 //update the name of the city with the searched city value.
 function findCity(event) {
   event.preventDefault();
@@ -47,8 +48,10 @@ function findCity(event) {
   axios.get(apiUrl).then(weatherDetails);
 }
 
+
 let searchCity = document.querySelector(".search-button");
 searchCity.addEventListener("click", findCity);
+
 
 //get the current city weather information from the api.
 function weatherDetails(response) {
@@ -57,6 +60,8 @@ function weatherDetails(response) {
   let currentTemparature = Math.round(response.data.temperature.current);
   temparature.innerHTML = currentTemparature;
 
+
+  
   //get dercription of the current temparature
   let description = document.querySelector(".description");
   let currentDescription = response.data.condition.description;
