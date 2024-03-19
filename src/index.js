@@ -1,57 +1,7 @@
-//Current date
-let currentDate = new Date();
-
-function dateTime() {
-  // days of the week and current time
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let day = days[currentDate.getDay()];
-  let hour = currentDate.getHours();
-  let minutes = currentDate.getMinutes();
-
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  return `${day} ${hour}:${minutes}`;
-}
-
-
-//update the time in the html file
-let todaysDate = document.querySelector(".current-date");
-todaysDate.innerHTML = dateTime();
-
-
-//update the name of the city with the searched city value.
-function findCity(event) {
-
-  event.preventDefault();
-  let cityValue = document.querySelector(".serach-value");
-  let city = document.querySelector(".current-city");
-  let currentCity = cityValue.value;
-  city.innerHTML = currentCity;
-
-  //API key and Url with city information
-  let apiKey = "ad47941082ao90b750fat7b2f455c3f0";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=metric`;
-
-  //read the api details for the specific city that was searched.
-  axios.get(apiUrl).then(weatherDetails);
-}
-
-let searchCity = document.querySelector(".search-button");
-searchCity.addEventListener("click", findCity);
-
-//get the current city weather information from the api.
 function weatherDetails(response) {
+  let city = document.querySelector(".current-city");
+  city.innerHTML = response.data.city;
+
   //get current temparature value
   let temparature = document.querySelector(".current-value");
   let currentTemparature = Math.round(response.data.temperature.current);
@@ -79,43 +29,100 @@ function weatherDetails(response) {
   let iconDescription = response.data.condition.icon;
   icon.innerHTML = `<img src="${temparatureIcon}" alt="${iconDescription}">`;
 
-  // console.log(iconDescription);
-  weeklyForecast(response.data.city);
+  getForecast(response.data.city);
 }
+
+function dateTime() {
+  // days of the week and current time
+  let currentDate = new Date();
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = days[currentDate.getDay()];
+  let hour = currentDate.getHours();
+  let minutes = currentDate.getMinutes();
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day} ${hour}:${minutes}`;
+}
+
+//update the time in the html file
+let todaysDate = document.querySelector(".current-date");
+todaysDate.innerHTML = dateTime();
+
+function searchcity(city) {
+  //API key and Url with city information
+  let apiKey = "ad47941082ao90b750fat7b2f455c3f0";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+  //read the api details for the specific city that was searched.
+  axios.get(apiUrl).then(weatherDetails);
+}
+
+function findCity(event) {
+  event.preventDefault();
+  let cityValue = document.querySelector(".serach-value");
+  searchcity(cityValue.value);
+}
+
+let searchCity = document.querySelector(".search-button");
+searchCity.addEventListener("click", findCity);
+
+//get the current city weather information from the api.
 
 function getForecast(city) {
-  apiKey = "ad47941082ao90b750fat7b2f455c3f0";
-  apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(weeklyForecast);
+  let apiKey = "ad47941082ao90b750fat7b2f455c3f0";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(weeklyForecast);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
 
 //display weekkly weather forecast.
 function weeklyForecast(response) {
- 
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tues"];
+  console.log(response.data);
+
   let daysOfWeek = " ";
 
   //loop through the days of the week
-  days.forEach(function (day) {
-    daysOfWeek =
-      daysOfWeek +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      daysOfWeek =
+        daysOfWeek +
+        `
   <div class="weather-forecast-day">
-            <div class="weather-forecast-date ">${day}</div>
-            <div class="weather-forecast-icon">🌤️</div>
+            <div class="weather-forecast-date ">${formatDay(day.time)}</div>
+            <div class="weather-forecast-icon">
+            <img src="${day.condition.icon_url}">
+            </div>
             <div class="weather-forecast-temperatures">
-              <div class="weather-forecast-max"><strong>15°</strong></div>
-              <div class="weather-forecast-min"><strong>9°</strong></div>
+              <div class="weather-forecast-max"><strong>${Math.round(
+                day.temperature.maximum
+              )}°</strong></div>
+              <div class="weather-forecast-min"><strong>${Math.round(
+                day.temperature.minimum
+              )}°</strong></div>
             </div>
   `;
+    }
   });
 
   let forecastWeather = document.querySelector("#forecast");
   forecastWeather.innerHTML = daysOfWeek;
 }
-
-
-
-weeklyForecast();
