@@ -17,22 +17,22 @@ function dateTime() {
   let hour = currentDate.getHours();
   let minutes = currentDate.getMinutes();
 
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  if (minutes < 0) {
+  if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
   return `${day} ${hour}:${minutes}`;
 }
 
+
 //update the time in the html file
 let todaysDate = document.querySelector(".current-date");
 todaysDate.innerHTML = dateTime();
 
+
 //update the name of the city with the searched city value.
 function findCity(event) {
+
   event.preventDefault();
   let cityValue = document.querySelector(".serach-value");
   let city = document.querySelector(".current-city");
@@ -79,12 +79,22 @@ function weatherDetails(response) {
   let iconDescription = response.data.condition.icon;
   icon.innerHTML = `<img src="${temparatureIcon}" alt="${iconDescription}">`;
 
-  console.log(iconDescription);
+  // console.log(iconDescription);
+  weeklyForecast(response.data.city);
 }
 
+function getForecast(city) {
+  apiKey = "ad47941082ao90b750fat7b2f455c3f0";
+  apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(weeklyForecast);
+}
+
+
 //display weekkly weather forecast.
-function weeklyForecast() {
-  let days = ["Fri", "Sat", "Sun", "Thu", "Fri"];
+function weeklyForecast(response) {
+ 
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tues"];
   let daysOfWeek = " ";
 
   //loop through the days of the week
@@ -92,12 +102,12 @@ function weeklyForecast() {
     daysOfWeek =
       daysOfWeek +
       `
-  <div class="forecast-day">
-            <div class="forecast-date">${day}</div>
-            <div class="forecast-icon">🌤️</div>
-            <div class="forecast-temparature">
-              <div class="forecast-temparature-max"><strong>15°</strong></div>
-              <div class="forecast-temparature-min"><strong>9°</strong></div>
+  <div class="weather-forecast-day">
+            <div class="weather-forecast-date ">${day}</div>
+            <div class="weather-forecast-icon">🌤️</div>
+            <div class="weather-forecast-temperatures">
+              <div class="weather-forecast-max"><strong>15°</strong></div>
+              <div class="weather-forecast-min"><strong>9°</strong></div>
             </div>
   `;
   });
@@ -105,5 +115,7 @@ function weeklyForecast() {
   let forecastWeather = document.querySelector("#forecast");
   forecastWeather.innerHTML = daysOfWeek;
 }
+
+
 
 weeklyForecast();
