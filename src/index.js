@@ -119,6 +119,7 @@ function weeklyForecast(response) {
                 day.temperature.minimum
               )}°</strong></div>
             </div>
+            </div>
   `;
     }
   });
